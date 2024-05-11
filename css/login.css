@@ -53,14 +53,14 @@ samp#already, samp#error {
 	position: absolute;
 	width: 100%;
 	text-align: center;
-	font-size: 1.25rem;
+	font-size: 1rem;
 	font-weight: 200;
 	font-style: normal;
 	opacity: 0;
 }
 
 samp#already {
-	top: 30%;
+	top: 25%;
 }
 
 samp#error {
@@ -81,13 +81,13 @@ var {
 #login-form {
 	width: 60%;
 	margin: 0 20%;
-	margin-top: 35%;
+	margin-top: 30%;
 }
 
 #login-form label {
 	display: block;
 	text-align: center;
-	font-size: 1.25rem;
+	font-size: 1rem;
 	font-weight: 200;
 	opacity: 0.8;
 }
@@ -112,7 +112,7 @@ var {
 }
 
 #login-form input[type="submit"] {
-	height: 7rem;
+	height: 6rem;
 	margin-top: 10%;
 	font-size: 1.75rem;
 }

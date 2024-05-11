@@ -30,7 +30,7 @@ body {
 }
 
 header {
-	margin-top: 40%;
+	margin-top: 25%;
 }
 
 h1 {
@@ -53,7 +53,7 @@ menu {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin-top: 4rem;
+	margin-top: 10%;
 	list-style-type: none;
 }
 
@@ -67,7 +67,6 @@ menu li:not(:last-child) {
 
 menu button {
 	width: 100%;
-	height: 6.5rem;
 	background-color: #000000;
 	color: #ffffff;
 	font-size: 1.5rem;
@@ -75,6 +74,7 @@ menu button {
 	border: 3px solid #ffffff;
 	border-radius: 4px;
 	cursor: pointer;
+	padding: 10% 0;
 }
 
 var {
