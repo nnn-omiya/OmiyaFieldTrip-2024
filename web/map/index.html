@@ -1,0 +1,175 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>うんち - Map</title>
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+        <style>
+            body { margin:0; padding:0; }
+            #map { position:absolute; top:0; bottom:0; width:100%; }
+
+            .marker {
+                background-image: url('flag.png');
+                background-size: cover;
+                width: 50px;
+                height: 50px;
+                cursor: pointer;
+            }
+
+            .mapboxgl-popup {
+                max-width: 200px;
+            }
+
+            .mapboxgl-popup-content {
+                text-align: center;
+                font-family: 'Open Sans', sans-serif;
+            }
+        </style>
+        <script>
+            const geojson = {
+                type: 'FeatureCollection',
+                features: [
+                    {
+                        type: 'Feature',
+                        geometry: {
+                            type: 'Point',
+                            coordinates: [139.6238548, 35.9064485]
+                        },
+                        properties: {
+                            title: 'OMY',
+                            description: '<p>JR,Tobu and New Shuttle Station</p>'
+                        }
+                    },
+                    {
+                        type: 'Feature',
+                        geometry: {
+                            type: 'Point',
+                            coordinates: [139.6304199, 35.9100715]
+                        },
+                        properties: {
+                            title: 'Mapbox',
+                            description: 'San Francisco, California'
+                        }
+                    }
+                ]
+            };
+        </script>
+    </head>
+    <body>
+        <div id="all_element">
+            <div id="map"></div>
+            <script>
+                // Mapbox アクセストークンを設定
+                mapboxgl.accessToken = 'pk.eyJ1IjoicGljb2xpbyIsImEiOiJjbHcwOW5kM3oyeGl3MmptczVmdXN0bmJlIn0.rF4px_LLHkcLTOUCvmnhjA';
+                // 地図を初期化
+                var map = new mapboxgl.Map({
+                    container: 'map', // 地図を表示する要素のID
+                    //style: 'mapbox://styles/picolio/clw0af0vx01xo01q152ocf0ae', // 地図のスタイルURL
+                    style: 'mapbox://styles/mapbox/streets-v11', // 地図のスタイルURL
+                    center: [139.6304109, 35.9100765], // 初期中心座標（キャンパス）
+                    zoom: 15 // 初期ズームレベル
+                });
+
+                // ユーザーの位置情報をリアルタイムで取得
+                function getLocation() {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.watchPosition(showPosition, showError, {
+                            enableHighAccuracy: true,
+                            timeout: 10000,
+                            maximumAge: 0
+                        });
+                    } else {
+                        alert("Geolocation is not supported by this browser.");
+                    }
+                }
+
+                // マーカー変数の初期化（マーカーがまだ存在しないことを示す）
+                var userMarker = null;
+
+                // 位置情報が取得できた場合の処理
+                function showPosition(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+
+                    // 地図の中心をユーザーの現在位置に更新
+                    map.flyTo({
+                        center: [longitude, latitude],
+                        essential: true // このアニメーションはユーザーの操作に基づくものとして扱う
+                    });
+
+                    // 以前に追加したマーカーがあれば、削除する
+                    if (userMarker) {
+                        userMarker.remove();
+                    }
+
+                    // 新しい位置にマーカーを追加
+                    userMarker = new mapboxgl.Marker({
+                        color: "#FF00FF" // ピンク色
+                    })
+                        .setLngLat([longitude, latitude])
+                        .addTo(map);
+                }
+
+                // 位置情報の取得に失敗した場合の処理
+                function showError(error) {
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            alert("User denied the request for Geolocation.");
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            alert("Location information is unavailable.");
+                            break;
+                        case error.TIMEOUT:
+                            alert("The request to get user location timed out.");
+                            break;
+                        case error.UNKNOWN_ERROR:
+                            alert("An unknown error occurred.");
+                            break;
+                    }
+                } if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        // 成功時の処理
+                        var latitude = position.coords.latitude;
+                        var longitude = position.coords.longitude;
+                        console.log("緯度: " + latitude + ", 経度: " + longitude);
+                        // ここで地図上にマーカーを表示するなどの処理を行う
+                    }, function (error) {
+                        // エラー時の処理
+                        console.error("エラーコード: " + error.code + " - " + error.message);
+                    }, {
+                        enableHighAccuracy: true, // 高精度な位置情報を求める
+                        timeout: 10000, // 最大待ち時間 (ミリ秒)
+                        maximumAge: 0 // キャッシュされた位置情報の最大年齢
+                    });
+                } else {
+                    console.error("このブラウザではGeolocationがサポートされていません。");
+                }
+
+                map.on("load", async () => {
+                    // add markers to map
+                    for (const marker of geojson.features) {
+                        // create a HTML element for each feature
+                        const el = document.createElement('div');
+                        el.className = 'marker';
+                        console.log(el);
+
+                        new mapboxgl.Marker(el)
+                            .setLngLat(marker.geometry.coordinates)
+                            .setPopup(
+                                new mapboxgl.Popup({ offset: 25 }) // add popups
+                                    .setHTML(
+                                        `<h3>${marker.properties.title}</h3><p>${marker.properties.description}</p>`
+                                    )
+                            )
+                            .addTo(map);
+                    }
+                });
+
+
+                // 位置情報取得の開始
+                getLocation();
+            </script>
+        </div>
+    </body>
+</html>
