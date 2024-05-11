@@ -3,10 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="./css/index.css">
-	<title>Document</title>
+	<title>大宮校外学習</title>
 </head>
 <body>
-
+	<main id="wrapper">
+		<header>
+			<h1>ユウジの伝説</h1>
+			<h3>Breath of the Omiya</h3>
+		</header>
+		<menu>
+			<li><button onclick="navigate('login.html')">クエストを始める</button></li>
+			<li><button onclick="navigate('status.html')">続きから</button></li>
+			<li><button onclick="navigate('status.html')">ルール説明</button></li>
+			<li><button onclick="navigate('status.html')">ランキング</button></li>
+		</menu>
+		<var>登録チーム:<span id="team-name">無し</span></var>
+		<samp id="error">チームを登録していません</samp>
+	</main>
 </body>
+<script src="./js/index.js"></script>
 </html>
