@@ -3,10 +3,50 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="./css/index.css">
-	<title>Document</title>
+	<title>大宮校外学習</title>
 </head>
 <body>
-
+	<main id="wrapper">
+		<header>
+			<h1>ユウジの伝説</h1>
+			<h3>Breath of the Omiya</h3>
+		</header>
+		<menu>
+			<li><button onclick="navigate('login.html')">クエストを始める</button></li>
+			<li><button onclick="navigate('status.html')">続きから</button></li>
+			<li><button onclick="navigate('status.html')">ルール説明</button></li>
+			<li><button onclick="navigate('status.html')">ランキング</button></li>
+		</menu>
+		<var>登録チーム:<span id="team-name">無し</span></var>
+		<samp id="error">チームを登録していません</samp>
+	</main>
 </body>
+<script src="./js/index.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyA-CH91r7BeCAACitqiNQfJgzwO30r5wOs",
+    authDomain: "omiya-field-trip-2024.firebaseapp.com",
+    projectId: "omiya-field-trip-2024",
+    storageBucket: "omiya-field-trip-2024.appspot.com",
+    messagingSenderId: "398971654542",
+    appId: "1:398971654542:web:be2b8ac830e0355a9794df",
+    measurementId: "G-4EEJTG3E2D"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 </html>
