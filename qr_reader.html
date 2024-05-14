@@ -3,10 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="./css/qr_reader.css">
-	<title>Document</title>
+	<title>大宮校外学習</title>
 </head>
 <body>
-
+	<main id="wrapper">
+		<header>
+			<h1><a href="./index.html">ユウジの伝説</a></h1>
+			<h3>Breath of the Omiya</h3>
+		</header>
+		<section id="qr-reader">
+			<p class="loading">読み込み中...</p>
+			<video id="video" autoplay muted playsinline></video>
+			<canvas id="camera-canvas"></canvas>
+			<canvas id="rect-canvas"></canvas>
+		</section>
+		<a href="game.html" id="back">戻る</a>
+	</main>
+	<script src="./js/library/jsQR.js"></script>
+	<script src="./js/common.js"></script>
+	<script src="./js/qr.js"></script>
 </body>
 </html>

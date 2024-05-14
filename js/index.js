@@ -13,16 +13,19 @@ function onTrigger() {
 	const element = document.querySelector('samp#error');
 	element.classList.add('fadeOut');
 
-	element.addEventListener('animationend', function() {
+	element.addEventListener('animationend', () => {
 		element.classList.remove('fadeOut');
 	}, { once: true });
 }
 
 window.addEventListener('load', () => {
 	const teamName = localStorage.getItem('teamName');
-	if (teamName) {
-		document.querySelector('span#team-name').textContent = teamName;
+	if (JSON.parse(teamName)) {
+		const name = JSON.parse(teamName).name;
+		document.querySelector('span#team-name').textContent = name;
+		document.querySelector('button#login').classList.add('none');
+		document.querySelector('button#game').classList.remove('none');
 	} else {
 		console.log('failed to get teamName');
 	}
-})
+});
