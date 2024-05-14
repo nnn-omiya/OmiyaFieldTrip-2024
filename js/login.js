@@ -49,7 +49,7 @@ function navigate(url) {
 }
 function processLogin(teamName, password) {
 	console.log(teamName, password);
-	fetch(url('AKfycbzRsn8Cwm1XqQS78rifruZg1LDZ7s6SAcIqxhgzeLPPCDysNfv-QD0BUSr8WFSLj1gocA'), {
+	fetch(base_url, {
 		'method': 'POST',
 		'body': JSON.stringify({
 			path: 'user_login',
