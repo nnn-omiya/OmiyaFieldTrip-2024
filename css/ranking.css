@@ -19,13 +19,15 @@ th,td{
 
 tr{text-align: center;}
  
+
 .perty .level{line-height: 1.3;}
 
-.party{line-height:.1.5;}
+.party{line-height:.1.5;
+   text-align:left;
+   padding-left:20px;}
 
 .level{line-height:0.5;}
 
-.speace{line-height:0.6;}
 
 .a{line-height:0;}
 
@@ -42,10 +44,12 @@ tr{text-align: center;}
 
  p{margin: top 30px;}
 
+   .tag{padding-bottom:26px;}
+
 #back {
    position: absolute;
-   left: 10%;
-   top: 20px;
+   left: 5%;
+   top: 5px;
    padding: 10px 20px;
    background-color: #000000;
    color: #FFFFFF;
@@ -56,9 +60,10 @@ tr{text-align: center;}
  div{ display: flex;
    justify-content: center; /* 子要素を中央揃え */
    position: relative;
+   top: 20px;;
   }
  .party2{
-       color:#a5a0a0;
-       text-align: center;
-     
- }
+   color:#a5a0a0;
+    text-align: center;
+    bottom:20px;
+   }
