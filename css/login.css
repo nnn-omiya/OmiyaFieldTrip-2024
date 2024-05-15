@@ -43,6 +43,11 @@ h1 {
 	font-weight: 400;
 }
 
+header a {
+	text-decoration: none;
+	color: #ffffff;
+}
+
 h3 {
 	font-size: 1.5rem;
 	font-weight: 200;
@@ -78,7 +83,7 @@ var {
 	opacity: 0.6;
 }
 
-#login-form {
+#form {
 	width: 60%;
 	margin: 0 20%;
 	margin-top: 30%;
@@ -115,6 +120,14 @@ var {
 	height: 6rem;
 	margin-top: 10%;
 	font-size: 1.75rem;
+}
+
+#loading {
+	width: 100%;
+	height: 30vh;
+	justify-content: center;
+	font-size: 2rem;
+	align-items: center;
 }
 
 @keyframes fadeOut {

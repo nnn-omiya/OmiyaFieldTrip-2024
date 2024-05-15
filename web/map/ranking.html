@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>ランキング</title>
+    </head>
+    <body>
+        <div id="all_element">
+        </div>
+    </body>
+    <script>
+      var data;
+      fetch("https://script.google.com/a/macros/nnn.ed.jp/s/AKfycbzJ_xHe6eMmEC5w9KVXkgk2z1-bGSpGcgzAsNqDZU62avdPsHuLWTuMlIKECCJ2-F65eg/exec?path=user_status&renban=1")
+      .then((response) => {
+        response.json().then(response => {
+          console.log(response);
+          output_status_data(response);
+        });
+      });
+      
+      function output_status_data(status) {
+        var count=0;
+        document.write(`<p>チーム名${status.teamName}</p>`)
+        document.write(`<p>レベル${status.level}</p>`)
+        document.write(`<p>最高ランク${status.maxRank}</p>`)
+        document.write(`<p>行ったチェックポイント${countSetBits(status.checkpoint)}</p>`)
+        document.write(`<p>倒したメンター${countSetBits(status.mentor)}</p>`)
+        function countSetBits(num) {
+          let count = 0;
+          while (num) {
+            count += num & 1;
+            num >>= 1;
+          }
+          return count;
+        }
+      }
+    </script>
+</html>

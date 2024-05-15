@@ -6,9 +6,9 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="./css/game.css">
 	<link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
 	<title>大宮校外学習</title>
+	<link rel="stylesheet" href="./css/about.css">
 </head>
 <body>
 	<main id="wrapper">
@@ -16,18 +16,14 @@
 			<h1><a href="./index.html">YUGEE QUEST</a></h1>
 			<h3>大宮の守り人</h3>
 		</header>
-		<menu>
-			<li><button onclick="navigate('scanner.html')">QRを読み取る</button></li>
-			<li>
-				<iframe src="./web/map/index.html" frameborder="0"></iframe>
-			</li>
-			<li><button onclick="navigate('status.html')">ステータスを表示</button></li>
-		</menu>
+		<section id="slideshow">
+			<img id="slide-image" src="" alt="Slide image">
+			<p id="slide-text"></p>
+		</section>
 		<var>登録チーム:<span id="team-name">無し</span></var>
 		<samp id="error">チームを登録していません</samp>
-		<a href="index.html" id="back">戻る</a>
 	</main>
 </body>
 <script src="./js/common.js"></script>
-<script src="./js/game.js"></script>
+<script src="./js/about.js"></script>
 </html>

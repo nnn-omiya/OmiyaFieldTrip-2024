@@ -26,40 +26,16 @@
                 font-family: 'Open Sans', sans-serif;
             }
         </style>
-        <script>
-            const geojson = {
-                type: 'FeatureCollection',
-                features: [
-                    {
-                        type: 'Feature',
-                        geometry: {
-                            type: 'Point',
-                            coordinates: [139.6238548, 35.9064485]
-                        },
-                        properties: {
-                            title: 'OMY',
-                            description: '<p>JR,Tobu and New Shuttle Station</p>'
-                        }
-                    },
-                    {
-                        type: 'Feature',
-                        geometry: {
-                            type: 'Point',
-                            coordinates: [139.6304199, 35.9100715]
-                        },
-                        properties: {
-                            title: 'Mapbox',
-                            description: 'San Francisco, California'
-                        }
-                    }
-                ]
-            };
-        </script>
+        <script src="landmark.js"></script>
     </head>
     <body>
         <div id="all_element">
             <div id="map"></div>
             <script>
+                const bounds = [
+                    [139.61410554648927, 35.896140851623805], // 南西限界　ハードオフ上小町店
+                    [139.6373485450725, 35.92570214413913] // 北東限界　大和田駅
+                ];
                 // Mapbox アクセストークンを設定
                 mapboxgl.accessToken = 'pk.eyJ1IjoicGljb2xpbyIsImEiOiJjbHcwOW5kM3oyeGl3MmptczVmdXN0bmJlIn0.rF4px_LLHkcLTOUCvmnhjA';
                 // 地図を初期化
@@ -67,10 +43,10 @@
                     container: 'map', // 地図を表示する要素のID
                     //style: 'mapbox://styles/picolio/clw0af0vx01xo01q152ocf0ae', // 地図のスタイルURL
                     style: 'mapbox://styles/mapbox/streets-v11', // 地図のスタイルURL
-                    center: [139.6304109, 35.9100765], // 初期中心座標（キャンパス）
-                    zoom: 15 // 初期ズームレベル
+                    center: [139.63037346070178, 35.91019040507183], // 初期中心座標（キャンパス）
+                    zoom: 20, // 初期ズームレベル
+                    maxBounds: bounds
                 });
-
                 // ユーザーの位置情報をリアルタイムで取得
                 function getLocation() {
                     if (navigator.geolocation) {
@@ -80,7 +56,7 @@
                             maximumAge: 0
                         });
                     } else {
-                        alert("Geolocation is not supported by this browser.");
+                        alert("GPS使えないブラウザです");
                     }
                 }
 
@@ -93,10 +69,10 @@
                     var longitude = position.coords.longitude;
 
                     // 地図の中心をユーザーの現在位置に更新
-                    map.flyTo({
+                    /*map.flyTo({
                         center: [longitude, latitude],
                         essential: true // このアニメーションはユーザーの操作に基づくものとして扱う
-                    });
+                    });*/
 
                     // 以前に追加したマーカーがあれば、削除する
                     if (userMarker) {
@@ -115,16 +91,17 @@
                 function showError(error) {
                     switch (error.code) {
                         case error.PERMISSION_DENIED:
-                            alert("User denied the request for Geolocation.");
+                            alert("GPSエラー(P)");
+                            //Permission
                             break;
                         case error.POSITION_UNAVAILABLE:
-                            alert("Location information is unavailable.");
+                            alert("GPSエラー(U)");
                             break;
                         case error.TIMEOUT:
-                            alert("The request to get user location timed out.");
+                            alert("GPSエラー(T)");
                             break;
                         case error.UNKNOWN_ERROR:
-                            alert("An unknown error occurred.");
+                            alert("GPSエラー(UNK)");
                             break;
                     }
                 } if (navigator.geolocation) {

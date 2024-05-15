@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="./css/scanner.css">
+	<link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
+	<title>大宮校外学習</title>
+</head>
+<body>
+	<main id="wrapper">
+		<header>
+			<h1><a href="./index.html">YUGEE QUEST</a></h1>
+			<h3>大宮の守り人</h3>
+		</header>
+		<section id="qr-reader">
+			<p class="loading">読み込み中...</p>
+			<p class="error">カメラの起動に失敗しました</p>
+			<video id="video" autoplay muted playsinline></video>
+			<canvas id="camera-canvas"></canvas>
+			<canvas id="rect-canvas"></canvas>
+		</section>
+		<div id="loading" style="display: none">loading<span></span></div>
+		<section id="battle">
+			<img src="./public/images/monster.png" alt="モンスターの画像">
+			<div class="text"><span>〇〇</span>が現れた</div>
+			<button onclick="() => attack(0)">攻撃</button>
+		</section>
+		<a href="game.html" id="back">戻る</a>
+		<var>登録チーム:<span id="team-name">無し</span></var>
+	</main>
+	<script src="./js/library/jsQR.js"></script>
+	<script src="./js/common.js"></script>
+	<script src="./js/scanner.js"></script>
+</body>
+</html>
