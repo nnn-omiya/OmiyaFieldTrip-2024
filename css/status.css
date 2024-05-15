@@ -1,0 +1,58 @@
+* {
+    font-family: "DotGothic16", sans-serif;
+}
+.title {
+  margin-top: 20px;
+}
+.parent {
+    border: 1px solid white;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+.name {
+    border: 1px solid white;
+    padding: 0px;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+  } 
+.status{
+    border: 1px solid white;
+    width: 50%;
+    margin-top: 35px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .miteiyouso {
+    border: 1px solid white;
+    padding: 0px;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+  } 
+  .checkpoint{
+    border: 1px solid white;
+    width: 50%;
+    margin-top: 35px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .modoru{
+    border: 1px solid white;
+    width: 10%;
+    margin-top: 22px;
+  }
+  .teamname{
+    margin-bottom: -20px;
+  }
+  .bottom{
+    display:flex
+  }
+  body{
+    color: white;
+    background-color: black;
+  }
+  
+
+  

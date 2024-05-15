@@ -2,7 +2,7 @@
 
 function navigate(url) {
 	const teamName = localStorage.getItem('teamName');
-	if (teamName || url === 'login.html') {
+	if (teamName || ["index.html","login.html"].find(page => page == url)) {
 		window.location.href = url;
 	} else {
 		onTrigger();
@@ -21,8 +21,7 @@ function onTrigger() {
 window.addEventListener('load', () => {
 	const teamName = localStorage.getItem('teamName');
 	if (JSON.parse(teamName)) {
-		const name = JSON.parse(teamName).name;
-		document.querySelector('span#team-name').textContent = name;
+		document.querySelector('span#team-name').textContent = getTeamName();
 		document.querySelector('button#login').classList.add('none');
 		document.querySelector('button#game').classList.remove('none');
 	} else {

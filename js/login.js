@@ -5,8 +5,8 @@ const passwordInput = document.getElementById('password');
 
 // const password = []
 
-let passwordLength = 0;
-
+// Androidとかのバグで、フォーカスが上手く取れないので泣く泣く諦める
+// let passwordLength = 0;
 // passwordInput.addEventListener('input', (event) => {
 // 	document.querySelector('div#test').textContent = `${password}`;
 // 	const arrayInput = Array.from(event.target.value);
@@ -31,6 +31,7 @@ window.addEventListener('load', () => {
 });
 
 form.addEventListener('submit', (event) => {
+	toggleLoading()
 	event.preventDefault();
 	const name = event.target.elements['name'];
 	const password = event.target.elements['password'];
@@ -39,14 +40,6 @@ form.addEventListener('submit', (event) => {
 	password.value = '';
 	password.length = 0;
 });
-function navigate(url) {
-	const teamName = localStorage.getItem('teamName');
-	if (teamName || url === 'login.html') {
-		window.location.href = url;
-	} else {
-		onTrigger();
-	}
-}
 function processLogin(teamName, password) {
 	console.log(teamName, password);
 	fetch(base_url, {
@@ -65,6 +58,7 @@ function processLogin(teamName, password) {
 		redirect: 'follow',
 	}).then(response => {
 		if (!response.ok) {
+			toggleLoading()
 			throw new Error('Network response was not ok');
 		}
 		response.json().then(data => {
@@ -74,18 +68,52 @@ function processLogin(teamName, password) {
 				navigate('game.html');
 			} else {
 				onTrigger();
+				toggleLoading()
 			}
 		})
 	})
 		.catch(e => {
-			document.querySelector('div#test').textContent = `${e}`;
+			toggleLoading()
 			onTrigger();
 			console.error(e);
 	});
 }
 
-function url(id) {
-	return `https://script.google.com/a/macros/nnn.ed.jp/s/${id}/exec`;
+let intervalId = null;
+
+function toggleLoading() {
+  const form = document.getElementById('login-form');
+	const loading = document.getElementById('loading');
+
+	const loadingText = document.querySelector('#loading span');
+	let dots = '';
+	const addDot = () => {
+		dots = dots.length < 3 ? dots + '.' : '';
+		loadingText.textContent = dots;
+	}
+
+	if (loading.style.display === 'none') {
+		form.style.display = 'none';
+		loading.style.display = 'flex';
+		addDot();
+		intervalId = setInterval(addDot, 500);
+	} else {
+		form.style.display = 'block';
+		loading.style.display = 'none';
+		if (intervalId) {
+			clearInterval(intervalId);
+			intervalId = null;
+		}
+	}
+}
+
+function navigate(url) {
+	const teamName = localStorage.getItem('teamName');
+	if (teamName || ["index.html","login.html", "about.html"].find(page => page == url)) {
+		window.location.href = url;
+	} else {
+		onTrigger();
+	}
 }
 
 function getPassword() {
