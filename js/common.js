@@ -16,6 +16,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		console.log('teamNameは存在しません');
         location.replace("index.html");
 	}
+
+	if (document.cookie.indexOf("5=t") != -1) {
+		Array.from(document.querySelectorAll('*')).filter((b_)=>{
+			if (b_.textContent == '大宮の守り人') {b_.textContent = '大宮の花嫁';}
+		});
+	}
 });
 
 function getTeamName() {
