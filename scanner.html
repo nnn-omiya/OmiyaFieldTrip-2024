@@ -7,6 +7,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="./css/scanner.css">
+	<link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
 	<title>大宮校外学習</title>
 </head>
 <body>
@@ -22,9 +23,10 @@
 			<canvas id="camera-canvas"></canvas>
 			<canvas id="rect-canvas"></canvas>
 		</section>
+		<div id="loading" style="display: none">loading<span></span></div>
 		<section id="battle">
-			<img src="./public/img/monster.png" alt="モンスターの画像">
-			<div class="text">〇〇が現れた</div>
+			<img src="./public/images/monster.png" alt="モンスターの画像">
+			<div class="text"><span>〇〇</span>が現れた</div>
 			<button onclick="() => attack(0)">攻撃</button>
 		</section>
 		<a href="game.html" id="back">戻る</a>

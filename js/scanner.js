@@ -61,18 +61,50 @@ const checkImage = (width, Height) => {
 
 function setBattle(id) {
 	const MENTOR_NAME = 'monster'
-	function changeImageSrc(newSrc) {
-    var image = document.querySelector('img');
-    image.src = `./public/images/${newSrc}.png`;
+	toggleLoading()
+	const url = `${base_url}?path=getMentorName&id=${id}`;
+	fetch(url)
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			response.json().then(data => {
+				console.log(data);
+				if (data.name) {
+					console.log(data.name);
+					document.querySelector('.text span').innerText = data.name;
+					document.querySelector('#loading').style.display = 'none';
+					document.querySelector('#battle').style.display = 'block';
+					document.querySelector('#battle button').setAttribute('onclick', `attack(${id})`);
+				} else {
+					console.log('failed');
+				}
+			})
+		})
+		.catch(e => {
+			console.error(e);
+		});
+}
+
+let intervalId = null;
+
+function toggleLoading() {
+	const loading = document.getElementById('loading');
+
+	const loadingText = document.querySelector('#loading span');
+	let dots = '';
+	const addDot = () => {
+		dots = dots.length < 3 ? dots + '.' : '';
+		loadingText.textContent = dots;
 	}
-	changeImageSrc(MENTOR_NAME);
 	document.querySelector('#qr-reader').style.display = 'none';
-	document.querySelector('#battle').style.display = 'block';
-	document.querySelector('#battle button').setAttribute('onclick', `attack(${id})`);
+	loading.style.display = 'flex';
+	addDot();
+	intervalId = setInterval(addDot, 500);
 }
 
 function attack(id) {
-	const url = `${base_url}?path=killmentor&mentor_id=${id}$teamid=${currentTeamId}`;
+	const url = `${base_url}?path=killmentor&mentor_id=${id}&teamid=${currentTeamId}`;
 	console.log(url);
 	fetch(url)
 		.then(response => {

@@ -82,7 +82,7 @@ function processLogin(teamName, password) {
 let intervalId = null;
 
 function toggleLoading() {
-    const form = document.getElementById('login-form');
+  const form = document.getElementById('login-form');
 	const loading = document.getElementById('loading');
 
 	const loadingText = document.querySelector('#loading span');
