@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: "DotGothic16", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+#all {
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    position: fixed;
+}
+.responsive {
+    width: 55vh;
+    height: 100vh;
+    background-color: black;
+    margin: 0 auto;
+}
+@media screen and (max-width : 700px) {
+    .responsive {
+        width: 100vw;
+    }
+}
+.title {
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5vh;
+}
+.title div h2 {
+    font-size: 40px;
+}
+.title div h4 {
+    font-size: 35px;
+    color: #7d7d7d;
+}
+.images {
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.images div {
+    border: solid 2px white;
+    width: 50%;
+    height: 15vh;
+}
+.aboutText {
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.aboutText div {
+    border: solid 2px white;
+    width: 80%;
+    height: 20vh;
+}
+.keyword {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.keyword div {
+    border: solid 2px white;
+    width: 60%;
+    height: 5vh;
+}
+input {
+    width: 99%;
+    height: 97%;
+    background-color: black;
+    color: white;
+}
+.attackButton {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.attackButton div {
+    width: 50%;
+    height: 5vh;
+    border: solid 2px white;
+}
+.attackButton div button {
+    width: 98%;
+    height: 97%;
+    background-color: black;
+    color: white;
+}
+.bottom {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.bottom div button {
+    width: 95%;
+    height: 5vh;
+    background-color: black;
+    color: white;
+}
+.team-name {
+    width: 50%;
+    border: solid 2px white;
+}
+.backButton-div {
+    width: 30%;
+    border: solid 2px white;
+}
