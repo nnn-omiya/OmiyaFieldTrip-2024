@@ -2,7 +2,7 @@
 
 function navigate(url) {
 	const teamName = localStorage.getItem('teamName');
-	if (teamName || ["index.html","login.html", "about.html"].find(page => page == url)) {
+	if (teamName || ["index.html","login.html"].find(page => page == url)) {
 		window.location.href = url;
 	} else {
 		onTrigger();
