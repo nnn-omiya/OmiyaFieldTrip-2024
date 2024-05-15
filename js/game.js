@@ -1,6 +1,6 @@
 function navigate(url) {
 	const teamName = localStorage.getItem('teamName');
-	if (teamName || url === 'login.html') {
+	if (teamName || ["index.html","login.html", "about.html"].find(page => page == url)) {
 		window.location.href = url;
 	} else {
 		onTrigger();
@@ -10,9 +10,8 @@ function navigate(url) {
 window.addEventListener('load', () => {
 	const teamName = localStorage.getItem('teamName');
 	if (JSON.parse(teamName)) {
-		const name = JSON.parse(teamName).name;
 		Array.from(document.querySelectorAll('span#team-name')).forEach(element => {
-			element.textContent = name;
+			element.textContent = getTeamName();
 		});
 	} else {
 		console.log('failed to get teamName');

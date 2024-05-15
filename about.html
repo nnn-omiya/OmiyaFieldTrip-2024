@@ -6,8 +6,8 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="./css/qr_reader.css">
 	<title>大宮校外学習</title>
+	<link rel="stylesheet" href="./css/about.css">
 </head>
 <body>
 	<main id="wrapper">
@@ -15,16 +15,14 @@
 			<h1><a href="./index.html">YUGEE QUEST</a></h1>
 			<h3>大宮の守り人</h3>
 		</header>
-		<section id="qr-reader">
-			<p class="loading">読み込み中...</p>
-			<video id="video" autoplay muted playsinline></video>
-			<canvas id="camera-canvas"></canvas>
-			<canvas id="rect-canvas"></canvas>
+		<section id="slideshow">
+			<img id="slide-image" src="" alt="Slide image">
+			<p id="slide-text"></p>
 		</section>
-		<a href="game.html" id="back">戻る</a>
+		<var>登録チーム:<span id="team-name">無し</span></var>
+		<samp id="error">チームを登録していません</samp>
 	</main>
-	<script src="./js/library/jsQR.js"></script>
-	<script src="./js/common.js"></script>
-	<script src="./js/qr.js"></script>
 </body>
+<script src="./js/common.js"></script>
+<script src="./js/about.js"></script>
 </html>
