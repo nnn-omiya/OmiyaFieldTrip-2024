@@ -49,7 +49,6 @@ const checkImage = (width, Height) => {
 
 	if (code && isCodeDataFormat(code.data)) {
 		console.log("QRコードが見つかりました", code.data);
-		// location.href = `battle.html${code.data}`
 		const id = code.data.split('&id=')[1];
 		setBattle(id);
 		video.srcObject.getVideoTracks().forEach(track => track.stop());
@@ -61,8 +60,7 @@ const checkImage = (width, Height) => {
 }
 
 function setBattle(id) {
-	const MENTOR_NAME = 'monster'
-	toggleLoading()
+	toggleLoading('qr-reader')
 	const url = `${base_url}?path=getMentorName&id=${id}`;
 	fetch(url)
 		.then(response => {
@@ -74,9 +72,8 @@ function setBattle(id) {
 				if (data.name) {
 					console.log(data.name);
 					document.querySelector('.text span').innerText = data.name;
-					document.querySelector('#loading').style.display = 'none';
-					document.querySelector('#battle').style.display = 'block';
-					document.querySelector('#battle button').setAttribute('onclick', `attack(${id})`);
+					toggleLoading('battle');
+					document.querySelector('#battle button').setAttribute('onclick', `attack(${id}, "${data.name}")`);
 				} else {
 					console.log('failed');
 				}
@@ -89,8 +86,9 @@ function setBattle(id) {
 
 let intervalId = null;
 
-function toggleLoading() {
+function toggleLoading(target) {
 	const loading = document.getElementById('loading');
+	const targetItem = document.getElementById(target);
 
 	const loadingText = document.querySelector('#loading span');
 	let dots = '';
@@ -98,13 +96,23 @@ function toggleLoading() {
 		dots = dots.length < 3 ? dots + '.' : '';
 		loadingText.textContent = dots;
 	}
-	document.querySelector('#qr-reader').style.display = 'none';
-	loading.style.display = 'flex';
-	addDot();
-	intervalId = setInterval(addDot, 500);
+	if (loading.style.display === 'none') {
+		targetItem.style.display = 'none';
+		loading.style.display = 'flex';
+		addDot();
+		intervalId = setInterval(addDot, 500);
+	} else {
+		loading.style.display = 'none';
+		targetItem.style.display = 'block';
+		if (intervalId) {
+			clearInterval(intervalId);
+			intervalId = null;
+		}
+	}
 }
 
-function attack(id) {
+function attack(id, name) {
+	toggleLoading('battle');
 	const url = `${base_url}?path=killmentor&mentor_id=${id}&teamId=${currentTeamId}`;
 	console.log(url);
 	fetch(url)
@@ -116,7 +124,7 @@ function attack(id) {
 				console.log(data);
 				if (data.status === 1) {
 					console.log('success');
-					// location.href = 'result.html';
+					location.href = `result.html?monsterName=${name}&xp=${data.xp}&path=monster&drop=${data.drop}`;
 				} else {
 					console.log('failed');
 				}
