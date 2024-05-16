@@ -128,3 +128,8 @@ main > *:nth-child(5) {
 	top: inherit;
 	width: 100%;
 }
+
+h1 a {
+  color: #ffffff;
+  text-decoration: none;
+}
