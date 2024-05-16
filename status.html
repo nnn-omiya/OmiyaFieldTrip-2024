@@ -1,55 +1,59 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./css/status.css">
 	<title>Document</title>
-	<link rel="preconnect"
-	href="https://fonts.googleapis.com">
-	<link rel="preconnect"
-	href="https://fonts.gstatic.com"
-	crossorigin>
-	<link
-	href="https://fonts.googleapis.com/css2?
-	family=DotGothic16&display=swap"
-	rel="stylesheet">
-	<script src="./js/common.js"></script>
-	<script src="./js/status.js" async></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 </head>
+
 <body>
-<div class="title">
-	<h1 style="text-align:center">YUGEE QUEST</h1>
-	<h4 style="text-align:center">大宮の守り人</h4>
-</div>
-</div>
-<div style="text-align:center">
-	  <div class="parent">
-		<p>なまえ</p>
-	  </div>
-	  <div class="name">
-		<p>abc123456</p>
-	  </div>
-	  <div class="status">
-		<p>ステータス</p>
-	  </div>
-	  <div class="miteiyouso">
-		<p>レベル:</p>
-		<p>最高順位:</p>
-	  </div>
-	  <div class="checkpoint">
-		<p>チェックポイント：n個</p>
-		<p>メンター発見数：n人</p>
-	  </div>
-	<div class="bottom">
-	  <div class="modoru">
-			<span>戻る</span>
-	  </div>
-	  <div class="teamname">
-	  	<h5>チーム名:abc12345 </h5>
-	  </div>
-	</div>
-</div>
-</div>
+	<main>
+		<div class="title">
+			<h1 style="text-align:center"><a href="index.html">YUGEE QUEST</a></h1>
+			<h4 style="text-align:center">大宮の守り人</h4>
+		</div>
+		<div style="text-align:center">
+			<div id="display">
+				<div class="parent">
+					<p>なまえ</p>
+				</div>
+				<div class="name">
+					<p>abc123456</p>
+				</div>
+				<div class="status">
+					<p>ステータス</p>
+				</div>
+				<div class="miteiyouso">
+					<p>レベル:</p>
+					<p>最高順位:</p>
+				</div>
+				<div class="root-item">
+					<p>メンターの落とし物</p>
+					<div></div>
+				</div>
+				<div class="checkpoint">
+					<p>チェックポイント：n個</p>
+					<p>メンター発見数：n人</p>
+				</div>
+			</div>
+			<div id="loading" style="display: none;">loading<span></span></div>
+		</div>
+		<div class="bottom">
+			<a href="game.html" class="modoru">
+				<span>戻る</span>
+			</a>
+			<div class="teamname">
+				<h5>チーム名:abc12345 </h5>
+			</div>
+		</div>
+	</main>
 </body>
+<script src="./js/common.js"></script>
+<script src="./js/status.js"></script>
+
 </html>
