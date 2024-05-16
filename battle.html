@@ -1,54 +1,63 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="./css/battle.css">
+	<link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
 	<title>大宮校外学習 - 戦闘</title>
 </head>
+
 <body>
 	<div id="all">
-        <div class="responsive">
-            <div class="title">
-                <div>
-                    <h2>YUGEE QUEST</h2>
-                    <h4>大宮の守り人</h4>
-                </div>
-            </div>
-            <div class="images">
-                <div>
-                    <img src="aaa" alt="abc12345" id="monsterImage">
-                </div>
-            </div>
-            <div class="aboutText">
-                <div>
-                    <span id="monsterAbout">sss</span>
-                </div>
-            </div>
-            <div class="keyword">
-                <div>
-                    <input type="text"placeholder="キーワードを入力" id="textInput">
-                </div>
-            </div>
-            <div class="attackButton">
-                <div>
-                    <button id="checkButton">攻撃！</button>
-                </div>
-            </div>
-            <div class="bottom">
-                <div class="backButton-div">
-                    <a href="game.html" class="modoru"><button id="backButton">戻る</button></a>
-                </div>
-                <div class="team-name">
-                    <nobr><p>登録チーム:<span id="teamName">abc12345</span></p></nobr>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="./js/common.js"></script>
+		<div class="responsive">
+			<div class="title">
+				<div>
+					<h2><a href="./index.html">YUGEE QUEST</a></h2>
+					<h4>大宮の守り人</h4>
+				</div>
+			</div>
+			<div>
+				<div class="images">
+					<div>
+						<img src="public/images/silver.png" alt="abc12345" id="monsterImage">
+					</div>
+				</div>
+				<div class="aboutText">
+					<div>
+						<span id="monsterAbout">sss</span>
+					</div>
+				</div>
+				<div class="keyword">
+					<div>
+						<input type="text" placeholder="キーワードを入力" id="textInput">
+					</div>
+				</div>
+				<div class="attackButton">
+					<div>
+						<button id="checkButton">攻撃！</button>
+					</div>
+				</div>
+			</div>
+			<div id="loading" style="display: none;">loading<span></span></div>
+			<div class="bottom">
+				<div class="backButton-div">
+					<a href="game.html" class="modoru"><button id="backButton">戻る</button></a>
+				</div>
+				<div class="team-name">
+					<nobr>
+						<p>登録チーム:<span id="teamName">abc12345</span></p>
+					</nobr>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="./js/common.js"></script>
 	<script src="./js/battle.js"></script>
 </body>
+
 </html>
