@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>うんち - Map</title>
+        <title>大宮校外学習 - Map</title>
         <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
         <style>
@@ -26,7 +26,16 @@
                 font-family: 'Open Sans', sans-serif;
             }
         </style>
+        <script src="/js/common.js"></script>
         <script src="landmark.js"></script>
+        <script>
+          function getRootItems(bit) {
+            const itemList = ['cp_hall', 'cp_coffee', 'cp_bread', 'park_omikuji', 'park_kapi', 'park_pig', 'park_garden','park_museum','sonic_symbol','animate_animate','tutorial_cp']
+            const bitString = bit.toString(2).split('').reverse();
+            const rootItem = itemList.filter((_, index) => bitString[index] === '1');
+            document.querySelector('.root-item > div').innerHTML = rootItem.join(',')
+          }
+        </script>
     </head>
     <body>
         <div id="all_element">
@@ -136,7 +145,7 @@
                             .setPopup(
                                 new mapboxgl.Popup({ offset: 25 }) // add popups
                                     .setHTML(
-                                        `<h3>${marker.properties.title}</h3><p>${marker.properties.description}</p>`
+                                        `<h3>${marker.properties.title}</h3><a href="/battle.html?id=${marker.properties.id}">se</a>`
                                     )
                             )
                             .addTo(map);

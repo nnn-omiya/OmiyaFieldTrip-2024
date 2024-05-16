@@ -5,100 +5,133 @@ const geojson = {
             type: 'Feature',
             geometry: {
                 type: 'Point',
-                coordinates: [139.6270861, 35.9074666]
+                coordinates: [139.62732141992308, 35.907346523775395]
             },
             properties: {
                 title: 'RaiBoC Hall',
-                description: '<p>うんち</p>'
+                description: '',
+                id: 'cp_hall'
             }
         },
         {
             type: 'Feature',
             geometry: {
                 type: 'Point',
-                coordinates: [139.630474, 35.9111529]
+                coordinates: [139.63057937887726, 35.911239017331575]
             },
             properties: {
                 title: '常盤珈琲焙煎所 大宮氷川参道店',
-                description: '<p>ちんちん</p>'
+                description: '',
+                id: 'cp_coffee'
             }
         },
         {
             type: 'Feature',
             geometry: {
                 type: 'Point',
-                coordinates: [139.6301185, 35.9076921]
+                coordinates: [139.63023198554382, 35.90771557362128]
             },
             properties: {
                 title: 'パン屋',
-                description: '<p>ちんちん</p>'
+                description: '',
+                id: 'cp_bread'
             }
         },
         {
             type: 'Feature',
             geometry: {
                 type: 'Point',
-                coordinates: [139.6296188,35.9165063]
+                coordinates: [139.6299748042266, 35.91667788129394]
             },
             properties: {
                 title: '氷川神社',
-                description: '<p>ちんちん</p>'
+                description: '',
+                id: 'park_omikuji'
             }
         },
         {
             type: 'Feature',
             geometry: {
                 type: 'Point',
-                coordinates: [139.6319459, 35.9185919]
+                coordinates: [139.63222135302993, 35.918746926475535]
             },
             properties: {
                 title: '大宮公園の小動物園',
-                description: '<p>ちんちん</p>'
+                description: '',
+                id: 'park_kapi'
             }
         },
         {
             type: 'Feature',
             geometry: {
                 type: 'Point',
-                coordinates: [139.6301794, 35.9170656]
+                coordinates: [139.63198231468496, 35.91868687281718]
+            },
+            properties: {
+                title: '大宮公園の小動物園',
+                description: '',
+                id: 'park_pig'
+            }
+        },
+        {
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [139.63128320708628, 35.9170963635574]
             },
             properties: {
                 title: '大宮庭園',
-                description: '<p>ちんちん</p>'
+                description: '',
+                id: 'park_garden'
             }
         },
         {
             type: 'Feature',
             geometry: {
                 type: 'Point',
-                coordinates: [139.629796, 35.9213188]
+                coordinates: [139.62942364624695, 35.921504280091554]
             },
             properties: {
                 title: '埼玉県立歴史と民俗の博物館',
-                description: '<p>ちんちん</p>'
+                description: '',
+                id: 'park_museum'
             }
         },
         {
             type: 'Feature',
             geometry: {
                 type: 'Point',
-                coordinates: [139.6196083, 35.9052576]
+                coordinates: [139.6206436757925, 35.90558345139526]
             },
             properties: {
-                title: 'ソニックシティ',
-                description: '<p>ちんちん</p>'
+                title: '鐘塚公園',
+                description: '',
+                id: 'sonic_symbol'
             }
         },
         {
             type: 'Feature',
             geometry: {
                 type: 'Point',
-                coordinates: [139.6233728, 35.904454]
+                coordinates: [139.62354927969147, 35.90446174643246]
             },
             properties: {
                 title: 'アニメイト大宮',
-                description: '<p>ちんちん</p>'
+                description: '',
+                id: 'animate_animate'
             }
+        },
+        {
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [139.63043917834807, 35.910183295112795]
+            },
+            properties: {
+                title: 'キャンパス',
+                description: '',
+                id: 'tutorial_cp'
+            },
         }
     ]
 };
