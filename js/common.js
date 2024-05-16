@@ -3,7 +3,7 @@ let currentTeamId = -1;
 let currentTeamName = "無し";
 
 //GASのAPI
-const deployID = "AKfycbw0aOFlph2_2JMjIlmvCyv7x7BPQAaXUI5ph1znAOZQyZQ1y0ZHT2ITBTDdCQOTyLmKYA"
+const deployID = "AKfycbwDly2n-GZgyVcnBz7cHA9ghtGzO3XOPAyH0ojfnrnelx_IUdqTRI1-xLyGxZi5cftSUg"
 const base_url =  "https://script.google.com/a/macros/nnn.ed.jp/s/"+ deployID + "/exec";
 
 //ページ読み込まれたときに処理
