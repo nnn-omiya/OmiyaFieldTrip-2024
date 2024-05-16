@@ -1,161 +1,249 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>大宮校外学習 - Map</title>
-        <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-        <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
-        <style>
-            body { margin:0; padding:0; }
-            #map { position:absolute; top:0; bottom:0; width:100%; }
 
-            .marker {
-                background-image: url('flag.png');
-                background-size: cover;
-                width: 50px;
-                height: 50px;
-                cursor: pointer;
-            }
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>大宮校外学習 - Map</title>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
 
-            .mapboxgl-popup {
-                max-width: 200px;
-            }
+		#all_element {
+			position: relative;
+			width: 100%;
+			height: 100%;
+		}
 
-            .mapboxgl-popup-content {
-                text-align: center;
-                font-family: 'Open Sans', sans-serif;
-            }
-        </style>
-        <script src="/js/common.js"></script>
-        <script src="landmark.js"></script>
-        <script>
-          function getRootItems(bit) {
-            const itemList = ['cp_hall', 'cp_coffee', 'cp_bread', 'park_omikuji', 'park_kapi', 'park_pig', 'park_garden','park_museum','sonic_symbol','animate_animate','tutorial_cp']
-            const bitString = bit.toString(2).split('').reverse();
-            const rootItem = itemList.filter((_, index) => bitString[index] === '1');
-            document.querySelector('.root-item > div').innerHTML = rootItem.join(',')
-          }
-        </script>
-    </head>
-    <body>
-        <div id="all_element">
-            <div id="map"></div>
-            <script>
-                const bounds = [
-                    [139.61410554648927, 35.896140851623805], // 南西限界　ハードオフ上小町店
-                    [139.6373485450725, 35.92570214413913] // 北東限界　大和田駅
-                ];
-                // Mapbox アクセストークンを設定
-                mapboxgl.accessToken = 'pk.eyJ1IjoicGljb2xpbyIsImEiOiJjbHcwOW5kM3oyeGl3MmptczVmdXN0bmJlIn0.rF4px_LLHkcLTOUCvmnhjA';
-                // 地図を初期化
-                var map = new mapboxgl.Map({
-                    container: 'map', // 地図を表示する要素のID
-                    //style: 'mapbox://styles/picolio/clw0af0vx01xo01q152ocf0ae', // 地図のスタイルURL
-                    style: 'mapbox://styles/mapbox/streets-v11', // 地図のスタイルURL
-                    center: [139.63037346070178, 35.91019040507183], // 初期中心座標（キャンパス）
-                    zoom: 20, // 初期ズームレベル
-                    maxBounds: bounds
-                });
-                // ユーザーの位置情報をリアルタイムで取得
-                function getLocation() {
-                    if (navigator.geolocation) {
-                        navigator.geolocation.watchPosition(showPosition, showError, {
-                            enableHighAccuracy: true,
-                            timeout: 10000,
-                            maximumAge: 0
-                        });
-                    } else {
-                        alert("GPS使えないブラウザです");
-                    }
-                }
+		#map {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+		}
 
-                // マーカー変数の初期化（マーカーがまだ存在しないことを示す）
-                var userMarker = null;
+		.marker {
+			background-image: url('flag.png');
+			background-size: cover;
+			width: 50px;
+			height: 50px;
+			cursor: pointer;
+		}
 
-                // 位置情報が取得できた場合の処理
-                function showPosition(position) {
-                    var latitude = position.coords.latitude;
-                    var longitude = position.coords.longitude;
+		.mapboxgl-popup {
+			max-width: 200px;
+		}
 
-                    // 地図の中心をユーザーの現在位置に更新
-                    /*map.flyTo({
-                        center: [longitude, latitude],
-                        essential: true // このアニメーションはユーザーの操作に基づくものとして扱う
-                    });*/
+		.mapboxgl-popup-content {
+			text-align: center;
+			font-family: sans-serif;
+		}
 
-                    // 以前に追加したマーカーがあれば、削除する
-                    if (userMarker) {
-                        userMarker.remove();
-                    }
+		.mapboxgl-popup-content button.action {
+			background-color: #fff;
+			border: none;
+			color: #000;
+			padding: 15px 32px;
+			text-align: center;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+		}
 
-                    // 新しい位置にマーカーを追加
-                    userMarker = new mapboxgl.Marker({
-                        color: "#FF00FF" // ピンク色
-                    })
-                        .setLngLat([longitude, latitude])
-                        .addTo(map);
-                }
+		.mapboxgl-popup-content button.action a {
+			text-decoration: none;
+			color: #000;
+		}
 
-                // 位置情報の取得に失敗した場合の処理
-                function showError(error) {
-                    switch (error.code) {
-                        case error.PERMISSION_DENIED:
-                            alert("GPSエラー(P)");
-                            //Permission
-                            break;
-                        case error.POSITION_UNAVAILABLE:
-                            alert("GPSエラー(U)");
-                            break;
-                        case error.TIMEOUT:
-                            //alert("GPSエラー(T)");
-                            break;
-                        case error.UNKNOWN_ERROR:
-                            //alert("GPSエラー(UNK)");
-                            break;
-                    }
-                } if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                        // 成功時の処理
-                        var latitude = position.coords.latitude;
-                        var longitude = position.coords.longitude;
-                        console.log("緯度: " + latitude + ", 経度: " + longitude);
-                        // ここで地図上にマーカーを表示するなどの処理を行う
-                    }, function (error) {
-                        // エラー時の処理
-                        console.error("エラーコード: " + error.code + " - " + error.message);
-                    }, {
-                        enableHighAccuracy: true, // 高精度な位置情報を求める
-                        timeout: 10000, // 最大待ち時間 (ミリ秒)
-                        maximumAge: 0 // キャッシュされた位置情報の最大年齢
-                    });
-                } else {
-                    console.error("このブラウザではGeolocationがサポートされていません。");
-                }
+		#loading {
+			color: #fff;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+			text-align: center;
+		}
+	</style>
+	<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+	<script src="/js/common.js"></script>
+	<script src="landmark.js"></script>
+	<script>
+		function getRootItems(bit) {
+			const itemList = ['cp_hall', 'cp_coffee', 'cp_bread', 'park_omikuji', 'park_kapi', 'park_pig', 'park_garden', 'park_museum', 'sonic_symbol', 'animate_animate', 'tutorial_cp']
+			const bitString = bit.toString(2).split('').reverse();
+			const rootItem = itemList.filter((_, index) => bitString[index] === '1');
+			document.querySelector('.root-item > div').innerHTML = rootItem.join(',')
+		}
+	</script>
+</head>
 
-                map.on("load", async () => {
-                    // add markers to map
-                    for (const marker of geojson.features) {
-                        // create a HTML element for each feature
-                        const el = document.createElement('div');
-                        el.className = 'marker';
-                        console.log(el);
+<body>
+	<div id="all_element">
+		<div id="map"></div>
+		<div id="loading" style="display: none;">loading<span></span></div>
+		<script>
+			let intervalId = null;
+			const bounds = [
+				[139.61410554648927, 35.896140851623805], // 南西限界　ハードオフ上小町店
+				[139.6373485450725, 35.92570214413913] // 北東限界　大和田駅
+			];
+			// Mapbox アクセストークンを設定
+			mapboxgl.accessToken = 'pk.eyJ1IjoicGljb2xpbyIsImEiOiJjbHcwOW5kM3oyeGl3MmptczVmdXN0bmJlIn0.rF4px_LLHkcLTOUCvmnhjA';
+			// 地図を初期化
+			var map = new mapboxgl.Map({
+				container: 'map', // 地図を表示する要素のID
+				//style: 'mapbox://styles/picolio/clw0af0vx01xo01q152ocf0ae', // 地図のスタイルURL
+				style: 'mapbox://styles/mapbox/streets-v11', // 地図のスタイルURL
+				center: [139.63037346070178, 35.91019040507183], // 初期中心座標（キャンパス）
+				zoom: 20, // 初期ズームレベル
+				maxBounds: bounds
+			});
+			// ユーザーの位置情報をリアルタイムで取得
+			function getLocation() {
+				if (navigator.geolocation) {
+					navigator.geolocation.watchPosition(showPosition, showError, {
+						enableHighAccuracy: true,
+						timeout: 10000,
+						maximumAge: 0
+					});
+				} else {
+					alert("GPS使えないブラウザです");
+				}
+			}
 
-                        new mapboxgl.Marker(el)
-                            .setLngLat(marker.geometry.coordinates)
-                            .setPopup(
-                                new mapboxgl.Popup({ offset: 25 }) // add popups
-                                    .setHTML(
-                                        `<h3>${marker.properties.title}</h3><a href="/battle.html?id=${marker.properties.id}" target="_parent">se</a>`
-                                    )
-                            )
-                            .addTo(map);
-                    }
-                });
+			// マーカー変数の初期化（マーカーがまだ存在しないことを示す）
+			var userMarker = null;
 
+			// 位置情報が取得できた場合の処理
+			function showPosition(position) {
+				var latitude = position.coords.latitude;
+				var longitude = position.coords.longitude;
 
-                // 位置情報取得の開始
-                getLocation();
-            </script>
-        </div>
-    </body>
+				// 地図の中心をユーザーの現在位置に更新
+				/*map.flyTo({
+						center: [longitude, latitude],
+						essential: true // このアニメーションはユーザーの操作に基づくものとして扱う
+				});*/
+
+				// 以前に追加したマーカーがあれば、削除する
+				if (userMarker) {
+					userMarker.remove();
+				}
+
+				// 新しい位置にマーカーを追加
+				userMarker = new mapboxgl.Marker({
+					color: "#FF00FF" // ピンク色
+				})
+					.setLngLat([longitude, latitude])
+					.addTo(map);
+			}
+
+			// 位置情報の取得に失敗した場合の処理
+			function showError(error) {
+				switch (error.code) {
+					case error.PERMISSION_DENIED:
+						alert("GPSエラー(P)");
+						//Permission
+						break;
+					case error.POSITION_UNAVAILABLE:
+						alert("GPSエラー(U)");
+						break;
+					case error.TIMEOUT:
+						//alert("GPSエラー(T)");
+						break;
+					case error.UNKNOWN_ERROR:
+						//alert("GPSエラー(UNK)");
+						break;
+				}
+			} if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(function (position) {
+					// 成功時の処理
+					var latitude = position.coords.latitude;
+					var longitude = position.coords.longitude;
+					console.log("緯度: " + latitude + ", 経度: " + longitude);
+					// ここで地図上にマーカーを表示するなどの処理を行う
+				}, function (error) {
+					// エラー時の処理
+					console.error("エラーコード: " + error.code + " - " + error.message);
+				}, {
+					enableHighAccuracy: true, // 高精度な位置情報を求める
+					timeout: 10000, // 最大待ち時間 (ミリ秒)
+					maximumAge: 0 // キャッシュされた位置情報の最大年齢
+				});
+			} else {
+				console.error("このブラウザではGeolocationがサポートされていません。");
+			}
+			toggleLoading('#map')
+			map.on("load", async () => {
+				// add markers to map
+				fetch(`${base_url}?path=get_checkpoint&teamId=${currentTeamId}`)
+					.then((response) => {
+						response.json().then(response => {
+							const bitCheckPoint = response.checkpoint.toString(2).split('').reverse();
+							const trueCount = bitCheckPoint.filter(bit => bit === '1').length;
+							const checkpoint = geojson.features.filter((_, index) => {
+									if ([2, 6, 7].includes(index)) {
+											return trueCount >= 2;
+									}
+									return bitCheckPoint[index] !== '1';
+							});
+							console.log(checkpoint);
+							geojson.features = checkpoint;
+							for (const marker of geojson.features) {
+								// create a HTML element for each feature
+								const el = document.createElement('div');
+								el.className = 'marker';
+								console.log(el);
+								new mapboxgl.Marker(el)
+									.setLngLat(marker.geometry.coordinates)
+									.setPopup(
+										new mapboxgl.Popup({ offset: 25 }) // add popups
+											.setHTML(
+												`<h3>${marker.properties.title}</h3><button class="action"><a href="/battle.html?id=${marker.properties.id}" target="_parent">戦闘開始</a></button>`
+											)
+									)
+									.addTo(map);
+							}
+						});
+					});
+					toggleLoading('#map');
+			});
+			// 位置情報取得の開始
+			getLocation();
+
+			// 追加しましたよ
+			function toggleLoading(target) {
+				console.log("実行中");
+				const targetItem = document.querySelector(target);
+				const loading = document.getElementById('loading');
+
+				const loadingText = document.querySelector('#loading span');
+				let dots = '';
+				const addDot = () => {
+					dots = dots.length < 3 ? dots + '.' : '';
+					loadingText.textContent = dots;
+				}
+
+				if (loading.style.display === 'none') {
+					targetItem.style.display = 'none';
+					loading.style.display = 'block';
+					addDot();
+					intervalId = setInterval(addDot, 500);
+				} else {
+					targetItem.style.display = null;
+					loading.style.display = 'none';
+					if (intervalId) {
+						clearInterval(intervalId);
+						intervalId = null;
+					}
+				}
+			}
+		</script>
+	</div>
+</body>
+
 </html>
