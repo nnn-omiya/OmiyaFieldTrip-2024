@@ -5,3 +5,6 @@ var xp = urlParams.get('xp');
 
 document.querySelector("#monsterImage").src = `public/images/${imagePath}_result.png`
 document.querySelector("#resultText").innerHTML = `${monsterName}を倒した！<br><br>経験値を${xp}獲得した`;
+
+const url = new URL(window.location.href);
+history.replaceState(null, '', url.pathname);
