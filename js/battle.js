@@ -24,7 +24,7 @@ document.getElementById("checkButton").addEventListener("click", function() {
         if (data.status === 1) {
             window.location.href = "result.html?"+new URLSearchParams(globalresponse);
         } else {
-            alert('キーワードちゃうで');
+          document.querySelector("#monsterAbout").innerHTML = `あいことばが違います！<br><br>${globalresponse.question}`;
         }
     } ))
 });
