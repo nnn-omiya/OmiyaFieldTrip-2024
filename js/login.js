@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
 });
 
 form.addEventListener('submit', (event) => {
-	toggleLoading()
+	toggleLoading('login-form')
 	event.preventDefault();
 	const name = event.target.elements['name'];
 	const password = event.target.elements['password'];
@@ -68,12 +68,12 @@ function processLogin(teamName, password) {
 				navigate('game.html');
 			} else {
 				onTrigger();
-				toggleLoading()
+				toggleLoading('login-form')
 			}
 		})
 	})
 		.catch(e => {
-			toggleLoading()
+			toggleLoading('login-form')
 			onTrigger();
 			console.error(e);
 	});
@@ -81,8 +81,8 @@ function processLogin(teamName, password) {
 
 let intervalId = null;
 
-function toggleLoading() {
-  const form = document.getElementById('login-form');
+function toggleLoading(target) {
+  const form = document.getElementById(target);
 	const loading = document.getElementById('loading');
 
 	const loadingText = document.querySelector('#loading span');

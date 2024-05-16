@@ -10,7 +10,7 @@ function main() {
 
   function output_status_data(status) {
     document.getElementsByClassName("name")[0].children[0].innerText = status.teamName
-    document.getElementsByClassName("miteiyouso")[0].children[0].innerText = `レベル:${status.level}`
+    document.getElementsByClassName("miteiyouso")[0].children[0].innerText = `経験値:${status.level}`
     document.getElementsByClassName("miteiyouso")[0].children[1].innerText = `最高順位:${status.maxRank}`
     document.getElementsByClassName("checkpoint")[0].children[0].innerText = `チェックポイント:${countSetBits(status.checkpoint)}個`
     document.getElementsByClassName("checkpoint")[0].children[1].innerText = `倒したメンター数:${countSetBits(status.mentor)}個`
@@ -22,9 +22,11 @@ function main() {
       }
       return count;
     }
-    getRootItems(status.mentor - 1)
+    getRootItems(status.mentor)
   }
 }
+
+let intervalId = null;
 
 function toggleLoading(target) {
   const targetItem = document.getElementById(target);

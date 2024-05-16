@@ -52,6 +52,7 @@ const checkImage = (width, Height) => {
 		// location.href = `battle.html${code.data}`
 		const id = code.data.split('&id=')[1];
 		setBattle(id);
+		video.srcObject.getVideoTracks().forEach(track => track.stop());
 	} else {
 		console.log("QRコードが見つかりません…", code);
 		rectCtx.clearRect(0, 0, width, Height);
@@ -104,7 +105,7 @@ function toggleLoading() {
 }
 
 function attack(id) {
-	const url = `${base_url}?path=killmentor&mentor_id=${id}&teamid=${currentTeamId}`;
+	const url = `${base_url}?path=killmentor&mentor_id=${id}&teamId=${currentTeamId}`;
 	console.log(url);
 	fetch(url)
 		.then(response => {

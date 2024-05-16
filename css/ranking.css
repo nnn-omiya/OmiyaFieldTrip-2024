@@ -1,69 +1,130 @@
 * {
-	font-family: "DotGothic16", sans-serif;
+  font-family: "DotGothic16", sans-serif;
 }
-html{background-color:#000000;}
-h1{text-align: center;}
-.subtitle{color:#a5a0a0;
-   text-align:center;}
-
-body{color:#FFFFFF;
-height:100%;} 
-
-table{  height:50%; margin:auto
-th,td{
-   border-collapse:collapse 1px #FFFFFF solid; /* 枠線をつける */
-   }
+html {
+  background-color: #000000;
+}
+h1 {
+  text-align: center;
+}
+.subtitle {
+  color: #a5a0a0;
+  text-align: center;
 }
 
-.number{line-height:3;}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  color: #ffffff;
+  font-weight: 300;
+  font-style: normal;
+}
 
-tr{text-align: center;}
- 
+body > main {
+  position: relative;
+  width: 55vh;
+  height: 100vh;
+  background-color: #000000;
+  margin: 0 auto;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  overflow: hidden;
+}
 
-.perty .level{line-height: 1.3;}
+table {
+  height: 50%;
+  margin:auto;
+	/* th, td {
+    border-collapse: collapse 1px #ffffff solid; 枠線をつける
+  } */
+}
 
-.party{line-height:.1.5;
-   text-align:left;
-   padding-left:20px;}
+.number {
+  line-height: 3;
+}
 
-.level{line-height:0.5;}
+tr {
+  text-align: center;
+}
 
+.perty .level {
+  line-height: 1.3;
+}
 
-.a{line-height:0;}
+.party {
+  /* line-height: 0.1.5; */
+  text-align: left;
+  padding-left: 20px;
+}
+
+.level {
+  line-height: 0.5;
+}
+
+.a {
+  line-height: 0;
+}
 
 #runking {
-   width: 85%;
-   margin: 0 auto;
-   }
-
- .level{
-   color:#a5a0a0;
-   text-align :right;
+  width: 85%;
+  margin: 0 auto;
 }
 
+.level {
+  color: #a5a0a0;
+  text-align: right;
+}
 
- p{margin: top 30px;}
+/* p {
+  margin: top 30px;
+} */
 
-   .tag{padding-bottom:26px;}
+.tag {
+  padding-bottom: 26px;
+}
 
 #back {
-   position: absolute;
-   left: 5%;
-   top: 5px;
-   padding: 10px 20px;
-   background-color: #000000;
-   color: #FFFFFF;
-   border: 3px solid #FFFFFF;
+  position: absolute;
+  left: 5%;
+  top: 5px;
+  padding: 10px 20px;
+  background-color: #000000;
+  color: #ffffff;
+  border: 3px solid #ffffff;
 }
 
+div {
+  display: flex;
+  justify-content: center; /* 子要素を中央揃え */
+  position: relative;
+  top: 20px;
+}
+.party2 {
+  color: #a5a0a0;
+  text-align: center;
+  bottom: 20px;
+}
 
- div{ display: flex;
-   justify-content: center; /* 子要素を中央揃え */
-   position: relative;
-   top: 20px;;
-  }
- .party2{
-   color:#a5a0a0;
-    text-align: center;
-    bottom:20px;
-   }
+/* ちょっと動かない部分がバグの元になるのでコメントアウトしています */
+/* ちょっと追加 */
+
+#runking {
+	margin-top: 5vh;
+	border-collapse: collapse;
+}
+
+#loading {
+	width: 100%;
+	height: 30vh;
+	justify-content: center;
+	font-size: 1.5rem;
+	align-items: center;
+}
+
+main > *:nth-child(5) {
+	position: absolute;
+	bottom: 5vh;
+	top: inherit;
+	width: 100%;
+}

@@ -2,34 +2,52 @@ function main() {
   fetch(`${base_url}?path=user_ranks&teamId=${currentTeamId}`)
   .then((response) => {
     response.json().then(response => {
-      //console.log(response);
-      output_status_data(response);
+      response.forEach((item, i) => {
+        document.getElementsByClassName("party")[i].innerText = item[0];
+        document.getElementsByClassName("level")[i].innerText = `経験値:${item[1]}`;
+      })
+      toggleLoading("runking")
     });
   });
-
-  function output_status_data(status) {
-    for(let i=0; i<6; i++) {
-      document.getElementsByClassName("party")[i].innerText = status[i][0];
-      document.getElementsByClassName("level")[i].innerText = `Lv.${status[i][1]}`;
-    }
-    document.getElementsByClassName("name")[0].children[0].innerText = status.teamName
-    document.getElementsByClassName("miteiyouso")[0].children[0].innerText = `レベル:${status.level}`
-    document.getElementsByClassName("miteiyouso")[0].children[1].innerText = `最高順位:${status.maxRank}`
-    document.getElementsByClassName("checkpoint")[0].children[0].innerText = `チェックポイント:${countSetBits(status.checkpoint)}個`
-    document.getElementsByClassName("checkpoint")[0].children[1].innerText = `チェックポイント:${countSetBits(status.mentor)}個`
-    function countSetBits(num) {
-      let count = 0;
-      while (num) {
-        count += num & 1;
-        num >>= 1;
-      }
-      return count;
-    }
-  }
 }
 
-if (document.readyState !== "loading") {
-  main();
-} else {
-  document.addEventListener("DOMContentLoaded", main, false);
+let intervalId = null;
+
+function toggleLoading(target) {
+  const targetItem = document.getElementById(target);
+	const loading = document.getElementById('loading');
+
+	const loadingText = document.querySelector('#loading span');
+	let dots = '';
+	const addDot = () => {
+		dots = dots.length < 3 ? dots + '.' : '';
+		loadingText.textContent = dots;
+	}
+
+	if (loading.style.display === 'none') {
+		targetItem.style.display = 'none';
+		loading.style.display = 'flex';
+		addDot();
+		intervalId = setInterval(addDot, 500);
+	} else {
+		targetItem.style.display = null;
+		loading.style.display = 'none';
+		if (intervalId) {
+			clearInterval(intervalId);
+			intervalId = null;
+		}
+	}
 }
+
+window.addEventListener('load', () => {
+  toggleLoading("runking")
+  main()
+  const teamName = localStorage.getItem('teamName');
+	if (JSON.parse(teamName)) {
+		Array.from(document.querySelectorAll('.party2')).forEach(element => {
+			element.textContent = `チーム名:${getTeamName()}`;
+		});
+	} else {
+		console.log('failed to get teamName');
+	}
+});
