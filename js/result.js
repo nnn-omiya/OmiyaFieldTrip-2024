@@ -8,3 +8,14 @@ document.querySelector("#resultText").innerHTML = `${monsterName}を倒した！
 
 const url = new URL(window.location.href);
 history.replaceState(null, '', url.pathname);
+
+window.addEventListener('load', () => {
+	const teamName = localStorage.getItem('teamName');
+	if (JSON.parse(teamName)) {
+		Array.from(document.querySelectorAll('#teamName')).forEach(element => {
+			element.textContent = `${getTeamName()}`;
+		});
+	} else {
+		console.log('failed to get teamName');
+	}
+});

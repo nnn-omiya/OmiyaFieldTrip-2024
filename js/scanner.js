@@ -124,7 +124,7 @@ function attack(id, name) {
 				console.log(data);
 				if (data.status === 1) {
 					console.log('success');
-					location.href = `result.html?monsterName=${name}&xp=${data.xp}&path=monster&drop=${data.drop}`;
+					location.href = `result.html?monsterName=${name}&xp=${data.xp}&path=silver&drop=${data.drop}`;
 				} else {
 					console.log('failed');
 				}
