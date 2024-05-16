@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./css/status.css">
+	<title>大宮校外学習 - 管理者</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+	<link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+	<main>
+		<div class="title">
+			<h1 style="text-align:center"><a href="index.html">YUGEE QUEST</a></h1>
+			<h4 style="text-align:center">大宮の守り人</h4>
+		</div>
+		<div style="text-align:center">
+			<div id="display">
+				<input type="text" id="teamId">
+				<button id="searchButton" onclick="search()">検索</button>
+				<div class="parent">
+					<p>なまえ</p>
+				</div>
+				<div class="name">
+					<p>abc123456</p>
+				</div>
+				<div class="status">
+					<p>ステータス</p>
+				</div>
+				<div class="miteiyouso">
+					<p>経験値:</p>
+					<p>最高順位:</p>
+				</div>
+				<div class="root-item">
+					<p>メンター</p>
+					<div></div>
+				</div>
+				<div class="checkpoint">
+					<p>チェックポイント</p>
+					<div></div>
+				</div>
+			</div>
+			<div id="loading" style="display: none;">loading<span></span></div>
+		</div>
+		<div class="bottom">
+			<a href="game.html" class="modoru">
+				<span>戻る</span>
+			</a>
+			<div class="teamname">
+				<h5>チーム名:abc12345 </h5>
+			</div>
+		</div>
+	</main>
+</body>
+<script src="./js/common.js"></script>
+<script src="./js/admin.js"></script>
+
+</html>

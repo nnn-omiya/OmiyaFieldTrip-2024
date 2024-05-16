@@ -10,7 +10,7 @@ const media = navigator.mediaDevices.getUserMedia({ audio: false, video: { width
 			checkImage(width, height);
 		}
 	}).catch((e) => {
-		console.log(e);
+		//console.log(e);
 		document.querySelector('.error').style.display = 'block';
 		document.querySelector('.loading').style.display = 'none';
 	});
@@ -48,12 +48,12 @@ const checkImage = (width, Height) => {
 	}
 
 	if (code && isCodeDataFormat(code.data)) {
-		console.log("QRコードが見つかりました", code.data);
+		//console.log("QRコードが見つかりました", code.data);
 		const id = code.data.split('&id=')[1];
 		setBattle(id);
 		video.srcObject.getVideoTracks().forEach(track => track.stop());
 	} else {
-		console.log("QRコードが見つかりません…", code);
+		//console.log("QRコードが見つかりません…", code);
 		rectCtx.clearRect(0, 0, width, Height);
 		setTimeout(()=>{ checkImage(width, Height) }, 500);
 	}
@@ -68,14 +68,14 @@ function setBattle(id) {
 				throw new Error('Network response was not ok');
 			}
 			response.json().then(data => {
-				console.log(data);
+				//console.log(data);
 				if (data.name) {
-					console.log(data.name);
+					//console.log(data.name);
 					document.querySelector('.text span').innerText = data.name;
 					toggleLoading('battle');
 					document.querySelector('#battle button').setAttribute('onclick', `attack(${id}, "${data.name}")`);
 				} else {
-					console.log('failed');
+					//console.log('failed');
 				}
 			})
 		})
@@ -114,19 +114,19 @@ function toggleLoading(target) {
 function attack(id, name) {
 	toggleLoading('battle');
 	const url = `${base_url}?path=killmentor&mentor_id=${id}&teamId=${currentTeamId}`;
-	console.log(url);
+	//console.log(url);
 	fetch(url)
 		.then(response => {
 			if (!response.ok) {
 				throw new Error('Network response was not ok');
 			}
 			response.json().then(data => {
-				console.log(data);
+				//console.log(data);
 				if (data.status === 1) {
-					console.log('success');
+					//console.log('success');
 					location.href = `result.html?monsterName=${name}&xp=${data.xp}&path=silver&drop=${data.drop}`;
 				} else {
-					console.log('failed');
+					//console.log('failed');
 				}
 			})
 		})
@@ -141,6 +141,6 @@ window.addEventListener('load', () => {
 			element.textContent = getTeamName();
 		});
 	} else {
-		console.log('failed to get teamName');
+		//console.log('failed to get teamName');
 	}
 });

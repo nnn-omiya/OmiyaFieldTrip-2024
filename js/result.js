@@ -2,9 +2,10 @@ var urlParams = new URLSearchParams(window.location.search);
 var monsterName = urlParams.get('monsterName');
 var imagePath = urlParams.get('path');
 var xp = urlParams.get('xp');
+var drop = urlParams.get('drop');
 
 document.querySelector("#monsterImage").src = `public/images/${imagePath}_result.png`
-document.querySelector("#resultText").innerHTML = `${monsterName}を倒した！<br><br>経験値を${xp}獲得した`;
+document.querySelector("#resultText").innerHTML = `${monsterName}を倒した！<br><br>経験値を${xp}獲得した<br>${drop}を拾った！`;
 
 const url = new URL(window.location.href);
 history.replaceState(null, '', url.pathname);
