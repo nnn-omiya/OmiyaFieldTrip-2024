@@ -41,7 +41,6 @@ form.addEventListener('submit', (event) => {
 	password.length = 0;
 });
 function processLogin(teamName, password) {
-	console.log(teamName, password);
 	fetch(base_url, {
 		'method': 'POST',
 		'body': JSON.stringify({
@@ -139,6 +138,6 @@ window.addEventListener('load', () => {
 		});
 		document.querySelector('samp#already').style.opacity = 1;
 	} else {
-		console.log('failed to get teamName');
+		//console.log('failed to get teamName');
 	}
 });

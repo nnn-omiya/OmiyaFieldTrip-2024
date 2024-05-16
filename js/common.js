@@ -27,3 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function getTeamName() {
     return currentTeamName
 }
+
+setInterval(function () {
+	console.log("おや、こんなところ見るなんてあなたプログラマー？\nスマートホームギルド、プログラマー募集してます\n@ちきな")
+}, 5000);
