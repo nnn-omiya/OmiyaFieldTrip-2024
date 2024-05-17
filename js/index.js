@@ -25,6 +25,6 @@ window.addEventListener('load', () => {
 		document.querySelector('button#login').classList.add('none');
 		document.querySelector('button#game').classList.remove('none');
 	} else {
-		//console.log('failed to get teamName');
+		console.log('failed to get teamName');
 	}
 });

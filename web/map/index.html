@@ -164,7 +164,7 @@
 					// 成功時の処理
 					var latitude = position.coords.latitude;
 					var longitude = position.coords.longitude;
-					console.log("緯度: " + latitude + ", 経度: " + longitude);
+					// console.log("緯度: " + latitude + ", 経度: " + longitude);
 					// ここで地図上にマーカーを表示するなどの処理を行う
 				}, function (error) {
 					// エラー時の処理
@@ -191,13 +191,13 @@
 									}
 									return bitCheckPoint[index] !== '1';
 							});
-							console.log(checkpoint);
+							// console.log(checkpoint);
 							geojson.features = checkpoint;
 							for (const marker of geojson.features) {
 								// create a HTML element for each feature
 								const el = document.createElement('div');
 								el.className = 'marker';
-								console.log(el);
+								// console.log(el);
 								new mapboxgl.Marker(el)
 									.setLngLat(marker.geometry.coordinates)
 									.setPopup(
@@ -217,7 +217,7 @@
 
 			// 追加しましたよ
 			function toggleLoading(target) {
-				console.log("実行中");
+				// console.log("実行中");
 				const targetItem = document.querySelector(target);
 				const loading = document.getElementById('loading');
 

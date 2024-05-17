@@ -61,7 +61,7 @@ function processLogin(teamName, password) {
 			throw new Error('Network response was not ok');
 		}
 		response.json().then(data => {
-			console.log(data);
+			// console.log(data);
 			if (data.status === 1) {
 				localStorage.setItem('teamName', `{"name":"${teamName}","id":"${data.id}"}`);
 				navigate('game.html');
@@ -120,7 +120,6 @@ function getPassword() {
 }
 
 function onTrigger() {
-	console.log('onTrigger');
 	const element = document.querySelector('samp#error');
 	element.classList.add('fadeOut');
 

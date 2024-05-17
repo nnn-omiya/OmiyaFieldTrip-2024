@@ -2,7 +2,7 @@ function main() {
   fetch(`${base_url}?path=user_status&teamId=${currentTeamId}`)
   .then((response) => {
     response.json().then(response => {
-      console.log(response);
+      // console.log(response);
       toggleLoading("display")
       output_status_data(response);
     });
