@@ -5,6 +5,9 @@ function main() {
       response.forEach((item, i) => {
         document.getElementsByClassName("party")[i].innerText = item[0];
         document.getElementsByClassName("level")[i].innerText = `経験値:${item[1]}`;
+        if (i == 5) {
+            document.querySelector("#runking > tbody > tr:nth-child(3) > td:nth-child(1)").innerText = `${item[2]}`;
+        }
       })
       toggleLoading("runking")
     });
